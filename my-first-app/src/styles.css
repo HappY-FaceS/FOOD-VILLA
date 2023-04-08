@@ -1,0 +1,15 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  .product-card {
+    height: 200px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
+  }
+  
+  .product-image img {
+    width: 300px;
+  }
