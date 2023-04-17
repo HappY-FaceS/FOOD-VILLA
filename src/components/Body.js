@@ -1,14 +1,56 @@
-import {restaurantList} from "../config";
-import RestrauntCard from "./RestaurantCard";
+import { restaurantList } from "../config";
+import RestaurantCard from "./RestaurantCard";
+import { useState } from "react";
+
+// What is state
+// what is React Hooks? - functions,
+// What is useState
+
+function filterData(searchText, restaurants) {
+  const filterData = restaurants.filter((restaurant) =>
+    restaurant.data.name.includes(searchText)
+  );
+
+  return filterData;
+}
 
 const Body = () => {
-    return (
+  const [restaurants, setRestaurants] = useState(restaurantList); // To set the restraunt List UI based on search varibale
+  const [searchText, setSearchText] = useState(""); // To set the search variable 
+
+  return (
+    <>
+      <div className="search-container">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+        />
+        <button
+          className="search-btn"
+          onClick={() => {
+            //need to filter the data
+            const data = filterData(searchText, restaurants);
+            // update the state - restaurants
+            setRestaurants(data);
+          }}
+        >
+          Search
+        </button>
+      </div>
       <div className="restaurant-list">
-        {restaurantList.map((restaurant) => {
-          return <RestrauntCard {...restaurant.data} key={restaurant.data.id} />; 
+        {restaurants.map((restaurant) => {
+          return (
+            <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+          );
         })}
       </div>
-    );
+    </>
+  );
 };
 
 
