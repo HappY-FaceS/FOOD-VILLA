@@ -1,13 +1,48 @@
-const About = () => {
-      return (
-        <div>
-          <h1>About Us Page</h1>
-          <p>
-            {" "}
-            Welcome to Food-Villa : A final destination for your empty stomach 🚀
-          </p>
-        </div>
-      );
-    };
+import { Outlet } from "react-router-dom";
+import ProfileFunctionalComponet from "./Profile";
+import Profile from "./ProfileClass";
+import { Component } from "react";
 
-    export default About;
+class About extends Component {
+  constructor(props) {
+    super(props);
+
+    //console.log("Parent - constructor");
+  }
+  componentDidMount() {
+    // Best place to make an Api call
+    //console.log("Parent - componentDidMount");
+  }
+  render() {
+    //console.log("Parent - render");
+    return (
+      <div>
+        <h1>About Us Page</h1>
+        <p>
+        Welcome to Food-Villa : A final destination for your empty stomach 🚀
+        </p>
+        <Profile />
+      </div>
+    );
+  }
+}
+
+export default About;
+
+/**
+ *
+ * Parent Constructor
+ * Parent render
+ *    First Child constructor
+ *    First Child render
+ *    Second Child constructor
+ *    Second Child render
+ *
+ *    DOM UPDATED for children
+ *
+ *    first Child componentDidMount
+ *    Second Child componentDid
+ *  Parent componentDidMount
+ *
+ *
+ */
